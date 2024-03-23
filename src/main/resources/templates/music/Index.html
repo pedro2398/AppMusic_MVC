@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>AppMusic</title>
-<!--    <link rel="stylesheet" href="global.css">-->
+    <link rel="stylesheet" href="/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <h3 class="title">Songs</h3>
+
+    <div>
+        <p class="message" th:text="${ message }" th:if="${ message != null }"></p>
+    </div>
+
     <section class="grid">
-        <div th:each="music : ${ music }">
-            <p class="title" th:text="${ music }"></p>
+        <div class="music" th:each="music : ${ music }">
+            <h4 th:text="${ music.name }"></h4>
+            <p th:text="${ music.artist }"></p>
             <div class="buttons">
-                <button>back</button>
-                <button>play/pause</button>
-                <button>next</button>
+                <button> << </button>
+                <button> || </button>
+                <button> >> </button>
             </div>
+            <details>
+                <summary></summary>
+                <a th:href="${ '/music/delete/' + music.id }" >Delete</a>
+            </details>
         </div>
     </section>
+    <a href="/music/new">Add Music</a>
 </body>
 </html>
